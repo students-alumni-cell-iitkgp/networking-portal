@@ -1,3 +1,4 @@
+# Host laravel-app in share hosting on Apace Server
 1. Clone networking-portal in /var/www/ directory
 2. ```nano /etc/apache2/sites-enabled/000-default.conf```
 3. Add following lines at the bottom :
