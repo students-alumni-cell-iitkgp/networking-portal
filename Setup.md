@@ -3,7 +3,6 @@
 3. Add following lines at the bottom :
 	Alias /networking /var/www/networking-portal/public/
 	<Directory "/var/www/networking-portal/public">
-	
 		AllowOverride All
 		Order allow,deny
 		allow from all
