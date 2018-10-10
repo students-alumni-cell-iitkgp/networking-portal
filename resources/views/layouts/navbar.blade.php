@@ -21,7 +21,7 @@
         <ul class="nav navbar-nav">
           &nbsp;
           @auth
-          <li><a href="/home">Home</a></li>
+          <li><a href="{{ url('/')}}">Home</a></li>
 
           @endauth
 

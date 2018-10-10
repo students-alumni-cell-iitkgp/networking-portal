@@ -12,7 +12,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
 <div class="container">
-  <h2>TAGS LIST</h2>    
+  <h2>TAGS LIST</h2>
    @if (session('message'))
   <div class="alert alert-success">
     <strong>Message : {{ session('message') }}</strong>
@@ -36,13 +36,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
       @foreach($alumni as $alum)
       <tr>
-        <td>{{$alum['id']}}</td>        
+        <td>{{$alum['id']}}</td>
         <td>{{$alum['tagname']}}</td>
-        
-        
+
+
       </tr>
       @endforeach
-      
+
     </tbody>
   </table>
 </div>
@@ -52,14 +52,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 
 <div class="container">
-  <h2>CREATE NEW TAG</h2> 
+  <h2>CREATE NEW TAG</h2>
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">Create</div>
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="\addtag">
+          <form class="form-horizontal" method="POST" action="{{url('/addtag')}}">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
               <label for="name" class="col-md-4 control-label">Tag Name</label>
@@ -87,7 +87,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </div>
 
 <div class="container">
-  <h2>DELETE TAG</h2>  
+  <h2>DELETE TAG</h2>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
@@ -97,9 +97,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
         <div class="panel-body">
 
-          <form class="form-horizontal" method="POST" action="/deletetag">
-            {{ csrf_field() }}  
-            <div class="form-group">        
+          <form class="form-horizontal" method="POST" action="{{url('/deletetag')}}">
+            {{ csrf_field() }}
+            <div class="form-group">
               <label for="name" class="col-md-4 control-label">Tag List</label>
               <div class="col-md-6">
                 <select name="tag" id="tag" class="form-control">
@@ -114,7 +114,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             <div class="col-md-8 col-md-offset-4">
               <button type="submit" class="btn btn-primary">
                 Delete
-              </button>               
+              </button>
             </div>
           </div>
         </form>

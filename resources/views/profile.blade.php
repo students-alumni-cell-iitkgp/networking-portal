@@ -13,7 +13,7 @@
   }
 </script>
 <div class="container">
-  @foreach($alumni as $alum)    
+  @foreach($alumni as $alum)
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
 
@@ -42,7 +42,7 @@
                     <dd>Male</dd>
                   </dl>
                 </div>-->
-                <div class=" col-md-9 col-lg-9 "> 
+                <div class=" col-md-9 col-lg-9 ">
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
@@ -84,7 +84,7 @@
                       <tr>
                         <td>Notes</td>
                         <td>
-                          <form method="post" action="/notesedit/{{$alum['id']}}">
+                          <form method="post" action="{{ url('/notesedit/'.$alum['id'])}}">
                             {{csrf_field()}}
                             <div class="form-group">
                               <label for="comment"></label>
@@ -103,8 +103,8 @@
 
                     </tbody>
                   </table>
-                  
-                  
+
+
                 </div>
                 <br><hr><br>
 
@@ -113,7 +113,7 @@
             <div class="panel-footer">
 
             </div>
-            
+
           </div>
         </div>
       </div>

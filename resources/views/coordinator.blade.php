@@ -4,19 +4,19 @@
 <script type="text/javascript">
   function call()
   {
-    window.location = '/viewdata';
+    window.location = '{{ url('/viewdata') }}';
   }
   function addtag()
   {
-    window.location = '/addtag';
+    window.location = '{{ url('/addtag') }}';
   }
   function access()
   {
-    window.location = '/access';
+    window.location = '{{ url('/access') }}';
   }
   function add()
   {
-    window.location = '/addalumni';
+    window.location = '{{ url('/addalumni') }}';
   }
 
 </script>
@@ -44,7 +44,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
             <h4 class="modal-title">Change Profile Picture.</h4>
           </div>
           <div class="modal-body">
-            <form action="/upload_pic" method="post" enctype="multipart/form-data">
+            <form action="{{url('/upload_pic')}}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
               @if (count($errors) > 0)
               <script type="text/javascript">

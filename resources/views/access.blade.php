@@ -6,7 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  
+
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
@@ -26,7 +26,7 @@
  @include('layouts.navbar')
 
  <div class="container">
-  <h2>STUDENT MEMBERS DETAILS</h2> 
+  <h2>STUDENT MEMBERS DETAILS</h2>
   @if (session('message'))
   <div class="alert alert-success">
     <strong>Message : {{ session('message') }}</strong>
@@ -54,8 +54,8 @@
 
       @foreach($smembers as $member)
       <tr>
-        <td>{{$member['id']}}</td>     
-        <td>{{$member['name']}}</td>        
+        <td>{{$member['id']}}</td>
+        <td>{{$member['name']}}</td>
         <td>{{$member['email']}}</td>
         <td><?php
         $arr = App\access::where('stud_id',$member['id'])->pluck('access');
@@ -64,7 +64,7 @@
         $accesses = [];
         foreach ($arr as $access)
         {
-         array_push($accesses,explode(',',$access));            
+         array_push($accesses,explode(',',$access));
        }
          //dd($accesses);
 
@@ -116,9 +116,9 @@
 
       ?></td>
       <td>
-        <form action="/accessdelete" method="POST">
+        <form action="{{ url('/accessdelete')}}" method="POST">
           {{csrf_field()}}
-          
+
           <select name="access_del"  class="form-control">
             @foreach($tags_list as $t)
               @php
@@ -156,7 +156,7 @@
         <div class="panel-heading">Give Access</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="/access">
+          <form class="form-horizontal" method="POST" action="{{url('/access')}}">
             {{ csrf_field() }}
 
             <div class="form-group">
@@ -239,4 +239,4 @@
 
 
 </body>
-</html>           
+</html>

@@ -25,6 +25,7 @@
      null,
      null,
      null,
+     null,
      { "searchable": false },
      { "searchable": false },
      null,
@@ -49,8 +50,8 @@
 <body>
   @include('layouts.navbar')
 
-  
-  
+
+
   <div class="container">
     @if($message!='')
     <div class="alert alert-success">
@@ -76,7 +77,8 @@
         <th>ID</th>
         <th>ALUMNI</th>
         <th>EMAIL</th>
-        <th>INDUSTRY</th>
+        <th>COMPANY</th>
+        <th>DESIGNATION</th>
         <th>TAGS</th>
         <th>ADD TAG TO ALUM</th>
         <th>DELETE TAG</th>
@@ -87,29 +89,30 @@
     <tbody>
       @foreach($alumni as $alum)
       <tr>
-        <td>{{$alum['id']}}</td> 
-        <td><a href="/profile/{{$alum['id']}}">{{$alum['name']}}</a></td>        
+        <td>{{$alum['id']}}</td>
+        <td><a href="{{url('/profile/'.$alum['id'])}}">{{$alum['name']}}</a></td>
         <td class="email">{{$alum['email'].' '}}</td>
         <td>{{$alum['industry']}}</td>
+        <td>{{$alum['designation']}}</td>
         <td><?php
         $tags_a = App\Addtag::where('alum_id',$alum['id'])->pluck('tags');
         foreach ($tags_a as $tag_a)
         {
-          echo $tag_a.'        ';  
+          echo $tag_a.'        ';
         }
         ?>
       </td>
 
       <td>
-        <form action="/assigntag/{{$alum['id']}}" method="post">
+        <form action="{{ url('/assigntag/'.$alum['id'])}}" method="post">
           {{csrf_field()}}
           <select name="tag" id="{{$alum['id']}}" class="form-control">
             @foreach($tags as $tag)
             <option value="{{$tag['tagname']}}">{{$tag['tagname']}}</option>
             @endforeach
           </select>
-          
-           <div class="form-group"> 
+
+           <div class="form-group">
           <button type="submit" style="background:none; border:none;">
            <span class="glyphicon glyphicon-plus"></span>
          </button>
@@ -118,7 +121,7 @@
      </td>
 
      <td>
-      <form action="/taggdelete/{{$alum['id']}}" method="POST">
+      <form action="{{ url('/taggdelete/'.$alum['id'])}}" method="POST">
         {{csrf_field()}}
         <?php
         $tags_a = App\Addtag::where('alum_id',$alum['id'])->get();
@@ -137,8 +140,8 @@
     </td>
 
     <td>{{$alum['year']}}</td>
-    <td>  
-      <a href="/editalum/{{$alum['id']}}">
+    <td>
+      <a href="{{url('/editalum/'.$alum['id'])}}">
         <span class="glyphicon glyphicon-edit"></span>
       </a>
 

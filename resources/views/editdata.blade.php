@@ -15,7 +15,7 @@
                     <br>
                     @endif
                      @foreach($alumni as $alum)
-                    <form class="form-horizontal" method="POST" action="/editalumnidata">
+                    <form class="form-horizontal" method="POST" action="{{ url('/editalumnidata')}}">
                         {{ csrf_field() }}
 
 

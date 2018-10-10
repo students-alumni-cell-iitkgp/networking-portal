@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +15,7 @@ Auth::routes();
 	Home Controller is used to get the dashboard of both student member and coordinator
 */
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
@@ -28,11 +27,11 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 	Alumni Controller is used to edit alum
 
 */
-Route::get('/viewdata','AlumniController@get');
-Route::get('/viewdata_s','AlumniController@get_s');
+Route::get('/viewdata','AlumniController@get')->name('viewdata');
+Route::get('/viewdata_s','AlumniController@get_s')->name('viewdata_s');
 Route::get('/year/{year}','AlumniController@getyear');
 Route::post('/notesedit/{id}','AlumniController@editnotes');
-Route::get('/addalumni','AlumniController@open');
+Route::get('/addalumni','AlumniController@open')->name('addalumni');
 //this function opens the window for addition of data of a new alumnus
 Route::post('/addalumni','AlumniController@index');//this route posts request for addition of a new alumnus
 Route::post('/editalumnidata','AlumniController@editdata');//edits data of an existing alumnus
@@ -48,14 +47,14 @@ Route::get('/profile/{id}','AlumniController@profile');//allows us to open profi
 
 Route::get('/addtag','TagslistController@index');//opens page where wen can create/delete new tags
 Route::post('/addtag','TagslistController@postdata');//sends a request to create new tag
-Route::post('/deletetag','TagslistController@deletedata');//sends request to delete an existing tag
+Route::post('/deletetag','TagslistController@deletedata')->name('deletetag');//sends request to delete an existing tag
 
 /*
 	Acess Controller is used to give acess to students and view student member dashboard
 
 */
 
-Route::post('/access','AccessController@post');//gives a new access to student member
+Route::post('/access','AccessController@post')->name('access');//gives a new access to student member
 Route::get('/access','AccessController@index');//opens a window where we can manage access of student members by coordinator
 Route::post('/accessdelete','AccessController@deleteAccess');//deletes an existing access to Student member
 

@@ -11,7 +11,7 @@
     <title>Networking</title>
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <!-- Styles -->
- 
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -39,8 +39,8 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         @auth
-                        <li><a href="/home">Home</a></li>
-                        
+                        <li><a href="{{url('/')}}">Home</a></li>
+
                         @endauth
 
                     </ul>

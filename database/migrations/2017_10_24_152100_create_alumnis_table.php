@@ -16,15 +16,18 @@ class CreateAlumnisTable extends Migration
         Schema::create('alumnis', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->text('email');
             $table->text('name');
+            $table->text('email');
+            $table->text('company');
+            $table->text('designation');
             $table->text('address');
             $table->text('city');
             $table->text('country');
             $table->text('mobile');
             $table->text('dob');
-            $table->text('industry');
-            $table->text('year');
+            $table->text('hall');
+            $table->text('dept');
+            $table->text('yog');
             $table->text('notes');
         });
     }
