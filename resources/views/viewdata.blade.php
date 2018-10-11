@@ -70,8 +70,29 @@
           <strong>Error : {{ session('Error') }}</strong>
         </div>
       @endif
+
       To <strong>copy</strong> all the emails in the page : <button type="button" class="btn btn-primary" id="copy_mail" onclick="copy_mail('.email')">COPY</button>
       <br>
+      <br>
+
+      <form method="post" action="{{ url('/assign_multiple_tag')}}">
+        {{ csrf_field() }}
+        Select checkboxes to add tags to multiple alums :
+        <select name="multiple_tag_name" class="form-control" disabled>
+          @foreach($tags as $tag)
+            <option value="{{$tag['tagname']}}">{{$tag['tagname']}}</option>
+          @endforeach
+        </select>
+        <input type="hidden" name="tags_multiple_id" >
+        <div class="form-group">
+          <button type="submit" name="submit_multiple" style="background:none; border:none;" disabled>
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </div>
+
+      </form>
+
+
       <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
           <tr>
@@ -90,83 +111,118 @@
         <tbody>
           @foreach($alumni as $alum)
             <tr>
-              <td>{{$alum['id']}}</td>
+              <td>
+                {{$alum['id']}}
+                <input type="checkbox" name="alum_selected" value="{{$alum['id']}}">
+              </td>
               <td><a href="{{url('/profile/'.$alum['id'])}}">{{$alum['name']}}</a></td>
               <td class="email">
                 <span id="copy{{ $alum['id'] }}"> {{$alum['email'].' '}} </span>
                 @if($alum['email'])
-                <button class="btn" data-clipboard-target="#copy{{ $alum['id']}}">
-                  <img src="https://clipboardjs.com/assets/images/clippy.svg" alt="Copy to clipboard" style="height: 18px; width: 18px;">
-                </button>
+                  <button class="btn" data-clipboard-target="#copy{{ $alum['id']}}">
+                    <img src="https://clipboardjs.com/assets/images/clippy.svg" alt="Copy to clipboard" style="height: 18px; width: 18px;">
+                  </button>
                 @endif
               </td>
-                <td>{{$alum['industry']}}</td>
-                <td>{{$alum['designation']}}</td>
-                <td><?php
-                $tags_a = App\Addtag::where('alum_id',$alum['id'])->pluck('tags');
-                foreach ($tags_a as $tag_a)
-                {
-                  echo $tag_a.'        ';
-                }
+              <td>{{$alum['industry']}}</td>
+              <td>{{$alum['designation']}}</td>
+              <td><?php
+              $tags_a = App\Addtag::where('alum_id',$alum['id'])->pluck('tags');
+              foreach ($tags_a as $tag_a)
+              {
+                echo $tag_a.'        ';
+              }
+              ?>
+            </td>
+
+            <td>
+              <form action="{{ url('/assigntag/'.$alum['id'])}}" method="post">
+                {{csrf_field()}}
+                <select name="tag" id="{{$alum['id']}}" class="form-control">
+                  @foreach($tags as $tag)
+                    <option value="{{$tag['tagname']}}">{{$tag['tagname']}}</option>
+                  @endforeach
+                </select>
+
+                <div class="form-group">
+                  <button type="submit" style="background:none; border:none;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </div>
+              </form>
+            </td>
+
+            <td>
+              <form action="{{ url('/taggdelete/'.$alum['id'])}}" method="POST">
+                {{csrf_field()}}
+                <?php
+                $tags_a = App\Addtag::where('alum_id',$alum['id'])->get();
                 ?>
-              </td>
+                <select name="tagd" id="{{$alum['id']}}" class="form-control">
+                  @foreach($tags_a as $tag_a)
+                    <option value="{{$tag_a['id']}}">{{$tag_a['tags']}}</option>
+                  @endforeach
+                </select>
+                @if(sizeof($tags_a)>0)
+                  <button type="submit" style="background:none; border:none;">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                @endif
+              </form>
+            </td>
 
-              <td>
-                <form action="{{ url('/assigntag/'.$alum['id'])}}" method="post">
-                  {{csrf_field()}}
-                  <select name="tag" id="{{$alum['id']}}" class="form-control">
-                    @foreach($tags as $tag)
-                      <option value="{{$tag['tagname']}}">{{$tag['tagname']}}</option>
-                    @endforeach
-                  </select>
+            <td>{{$alum['year']}}</td>
+            <td>
+              <a href="{{url('/editalum/'.$alum['id'])}}">
+                <span class="glyphicon glyphicon-edit"></span>
+              </a>
 
-                  <div class="form-group">
-                    <button type="submit" style="background:none; border:none;">
-                      <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                  </div>
-                </form>
-              </td>
+            </td>
 
-              <td>
-                <form action="{{ url('/taggdelete/'.$alum['id'])}}" method="POST">
-                  {{csrf_field()}}
-                  <?php
-                  $tags_a = App\Addtag::where('alum_id',$alum['id'])->get();
-                  ?>
-                  <select name="tagd" id="{{$alum['id']}}" class="form-control">
-                    @foreach($tags_a as $tag_a)
-                      <option value="{{$tag_a['id']}}">{{$tag_a['tags']}}</option>
-                    @endforeach
-                  </select>
-                  @if(sizeof($tags_a)>0)
-                    <button type="submit" style="background:none; border:none;">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                  @endif
-                </form>
-              </td>
-
-              <td>{{$alum['year']}}</td>
-              <td>
-                <a href="{{url('/editalum/'.$alum['id'])}}">
-                  <span class="glyphicon glyphicon-edit"></span>
-                </a>
-
-              </td>
-
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
 
 
-    <script type="text/javascript">
-    // For demo to fit into DataTables site builder...
-    $('#example')
-    .removeClass( 'display' )
-    .addClass('table table-striped table-bordered');
-  </script>
+  <script type="text/javascript">
+
+  $('#example')
+  .removeClass( 'display' )
+  .addClass('table table-striped table-bordered');
+
+  var checkboxes = document.querySelectorAll('input[type=checkbox]');
+  var select = document.querySelector('select[name=multiple_tag_name]');
+  var button = document.querySelector('button[name=submit_multiple]');
+  var hidden_input = document.querySelector('input[name=tags_multiple_id]')
+  var alum_multiple_id = [];
+  // checkboxes.addEventListener('chec')
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change',function functionName() {
+
+      if(checkbox.checked){
+        alum_multiple_id.push(checkbox.value);
+        hidden_input.value = alum_multiple_id;
+      }
+      else {
+        var pos = alum_multiple_id.indexOf(checkbox.value);
+        if(pos > -1){
+          alum_multiple_id.splice(pos,1);
+        }
+        hidden_input.value = alum_multiple_id;
+      }
+      if(hidden_input.value.length){
+        select.disabled = false;
+        button.disabled = false;
+      }
+      else {
+        select.disabled = true;
+        button.disabled = true;
+      }
+      console.log(hidden_input);
+    })
+  });
+</script>
 </body>
 </html>

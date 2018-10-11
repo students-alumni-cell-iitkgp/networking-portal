@@ -65,5 +65,6 @@ Route::post('/accessdelete','AccessController@deleteAccess');//deletes an existi
 
 Route::post('/assigntag/{id}','AddtagController@index');//assigns a new tag to a alumnus
 Route::post('/taggdelete/{id}','AddtagController@delete');//delets tag assigned to an alumnus
+Route::post('/assign_multiple_tag','AddtagController@assign_multiple');
 
 Route::post('/upload_pic','FileController@upload_pic');//uploads profile pic
