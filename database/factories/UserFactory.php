@@ -26,7 +26,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 $factory->define(App\Alumni::class, function (Faker $faker) {
-    
+
     return [
         'email' => $faker->safeEmail,
         'name' =>$faker->name,
@@ -35,8 +35,11 @@ $factory->define(App\Alumni::class, function (Faker $faker) {
         'country' =>$faker->country,
         'mobile' =>$faker->e164PhoneNumber,
         'dob' =>$faker->date,
-        'industry' =>$faker->company,
-        'year'=>$faker->year,
+        'company' =>$faker->company,
+        'yog'=>$faker->year,
+        'hall' =>$faker->e164PhoneNumber,
+        'dept' =>$faker->date,
+        'designation' =>$faker->company,
         'notes'=>" ",
 
     ];
@@ -44,7 +47,7 @@ $factory->define(App\Alumni::class, function (Faker $faker) {
 
 
 $factory->define(App\smember::class, function (Faker $faker) {
-    
+
     return [
         'email' => $faker->safeEmail,
         'name' =>$faker->name,
@@ -53,4 +56,3 @@ $factory->define(App\smember::class, function (Faker $faker) {
 
     ];
 });
-
