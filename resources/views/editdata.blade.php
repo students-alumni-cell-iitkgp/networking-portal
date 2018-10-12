@@ -51,6 +51,65 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="text" class="form-control" name="email" value="{{$alum['email']}}">
+
+                                @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('hall') ? ' has-error' : '' }}">
+                            <label for="hall" class="col-md-4 control-label">Hall of Residence</label>
+
+                            <div class="col-md-6">
+                                <input id="hall" type="text" class="form-control" name="hall" value="{{$alum['hall']}}"  >
+
+                                @if ($errors->has('hall'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('hall') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('dept') ? ' has-error' : '' }}">
+                            <label for="dept" class="col-md-4 control-label">Department</label>
+
+                            <div class="col-md-6">
+                                <input id="dept" type="text" class="form-control" name="dept" value="{{$alum['dept']}}"  >
+
+                                @if ($errors->has('dept'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('dept') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('yog') ? ' has-error' : '' }}">
+                            <label for="yog" class="col-md-4 control-label">Year of graduation</label>
+
+                            <div class="col-md-6">
+                                <input id="yog" type="text" class="form-control" name="yog" value="{{$alum['yog']}}"  >
+
+                                @if ($errors->has('yog'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('yog') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+
+
 
 
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
@@ -139,33 +198,36 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('industry') ? ' has-error' : '' }}">
-                            <label for="industry" class="col-md-4 control-label">Industry</label>
+                        <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
+                            <label for="company" class="col-md-4 control-label">Company</label>
 
                             <div class="col-md-6">
-                                <input id="industry" type="text" class="form-control" name="industry" value="{{$alum['industry']}}"  >
+                                <input id="company" type="text" class="form-control" name="company" value="{{$alum['company']}}"  >
 
-                                @if ($errors->has('industry'))
+                                @if ($errors->has('company'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('industry') }}</strong>
+                                    <strong>{{ $errors->first('company') }}</strong>
                                 </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                        <div class="form-group{{ $errors->has('designation') ? ' has-error' : '' }}">
+                            <label for="designation" class="col-md-4 control-label">Designation</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="{{$alum['email']}}">
+                                <input id="company" type="text" class="form-control" name="designation" value="{{$alum['designation']}}"  >
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('designation'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('designation') }}</strong>
                                 </span>
                                 @endif
                             </div>
                         </div>
+
+
 
 
 

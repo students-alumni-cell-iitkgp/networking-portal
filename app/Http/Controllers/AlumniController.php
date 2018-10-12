@@ -54,6 +54,10 @@ class AlumniController extends Controller
   }
   public function get()
   {
+    if (Auth::user()->type == 'SM') {
+      // code...
+      return back();
+    }
     //this function gives alumni data to coordinators
     $alumni = Alumni::get();
     $message = '';
@@ -142,6 +146,10 @@ class AlumniController extends Controller
 
 public function get_s()
 {
+  if (Auth::user()->type == 'CO') {
+    // code...
+    return back();
+  }
   //this function gives alumni data to student members
   $user_name = Auth::user()->name;
 

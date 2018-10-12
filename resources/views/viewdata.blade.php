@@ -75,18 +75,21 @@
       <br>
       <br>
 
-      <form method="post" action="{{ url('/assign_multiple_tag')}}">
+      <form method="post" action="{{ url('/assign_multiple_tag')}}" class="form-inline">
         {{ csrf_field() }}
-        Select checkboxes to add tags to multiple alums :
-        <select name="multiple_tag_name" class="form-control" disabled>
-          @foreach($tags as $tag)
-            <option value="{{$tag['tagname']}}">{{$tag['tagname']}}</option>
-          @endforeach
-        </select>
+        Select <b>checkboxes</b> to add tags to multiple alumni :
+        <div class="form-group">
+          <select name="multiple_tag_name" class="form-control" disabled>
+            @foreach($tags as $tag)
+              <option value="{{$tag['tagname']}}">{{$tag['tagname']}}</option>
+            @endforeach
+          </select>
+        </div>
+
         <input type="hidden" name="tags_multiple_id" >
         <div class="form-group">
-          <button type="submit" name="submit_multiple" style="background:none; border:none;" disabled>
-            <span class="glyphicon glyphicon-plus"></span>
+          <button type="submit" name="submit_multiple" class="btn btn-primary" disabled>
+            Add Tag
           </button>
         </div>
 
