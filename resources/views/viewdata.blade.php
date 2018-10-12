@@ -33,8 +33,8 @@
           { "searchable": false },
         ]
       });
-      document.getElementById("mySidenav").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
+      // document.getElementById("mySidenav").style.width = "250px";
+      // document.getElementById("main").style.marginLeft = "250px";
     } );
 
     function copy_mail(element) {
@@ -99,7 +99,10 @@
       <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>
+              ID
+            {{-- <input type="checkbox" name="select_all" value=""> --}}
+            </th>
             <th>ALUMNI</th>
             <th>EMAIL</th>
             <th>COMPANY</th>
@@ -113,7 +116,7 @@
         </thead>
         <tbody>
           @foreach($alumni as $alum)
-            <tr>
+            <tr id="row{{$alum['id']}}">
               <td>
                 {{$alum['id']}}
                 <input type="checkbox" name="alum_selected" value="{{$alum['id']}}">
@@ -194,17 +197,27 @@
   $('#example')
   .removeClass( 'display' )
   .addClass('table table-striped table-bordered');
+  // var checkbox_all = document.querySelector('input[name=select_all]');
+  // checkbox_all.addEventListener('change',function selectAllCheckbox() {
+  //
+  // })
 
   var checkboxes = document.querySelectorAll('input[type=checkbox]');
   var select = document.querySelector('select[name=multiple_tag_name]');
   var button = document.querySelector('button[name=submit_multiple]');
-  var hidden_input = document.querySelector('input[name=tags_multiple_id]')
+  var hidden_input = document.querySelector('input[name=tags_multiple_id]');
+  var trows = document.querySelectorAll(`tr`);
+
   var alum_multiple_id = [];
   // checkboxes.addEventListener('chec')
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change',function functionName() {
 
       if(checkbox.checked){
+        //console.log(tr);
+        var tr = trows.item(checkbox.value);
+        tr.style.background = '#d4d2d2';
+        // console.log(tr);
         alum_multiple_id.push(checkbox.value);
         hidden_input.value = alum_multiple_id;
       }
@@ -214,7 +227,11 @@
           alum_multiple_id.splice(pos,1);
         }
         hidden_input.value = alum_multiple_id;
+        var tr = trows.item(checkbox.value);
+
+        tr.style.background = (checkbox.value % 2 == 0) ? '#fff' : '#f9f9f9';
       }
+
       if(hidden_input.value.length){
         select.disabled = false;
         button.disabled = false;
@@ -223,7 +240,7 @@
         select.disabled = true;
         button.disabled = true;
       }
-      console.log(hidden_input);
+      // console.log(hidden_input);
     })
   });
 </script>
