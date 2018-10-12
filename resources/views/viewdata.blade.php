@@ -130,7 +130,7 @@
                   </button>
                 @endif
               </td>
-              <td>{{$alum['industry']}}</td>
+              <td>{{$alum['company']}}</td>
               <td>{{$alum['designation']}}</td>
               <td><?php
               $tags_a = App\Addtag::where('alum_id',$alum['id'])->pluck('tags');

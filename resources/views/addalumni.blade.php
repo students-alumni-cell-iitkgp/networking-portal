@@ -35,7 +35,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" >
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" >
 
                                 @if ($errors->has('email'))
                                 <span class="help-block">
@@ -108,7 +108,7 @@
                             <label for="yog" class="col-md-4 control-label">Year of Graduation</label>
 
                             <div class="col-md-6">
-                                <input id="yog" type="text" class="form-control" name="yog" value="{{ old('yog') }}"  >
+                                <input id="yog" type="number" min="1900" max="2018" class="form-control" name="yog" value="{{ old('yog') }}"  >
 
                                 @if ($errors->has('yog'))
                                 <span class="help-block">
@@ -122,7 +122,7 @@
                             <label for="dob" class="col-md-4 control-label">D.O.B</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="text" class="form-control" name="dob" value="{{ old('dob') }}"  >
+                                <input id="dob" type="date" class="form-control" name="dob" value="{{ old('dob') }}"  >
 
                                 @if ($errors->has('dob'))
                                 <span class="help-block">
@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('designation') ? ' has-error' : '' }}">
-                            <label for="designation" class="col-md-4 control-label">designation</label>
+                            <label for="designation" class="col-md-4 control-label">Designation</label>
 
                             <div class="col-md-6">
                                 <input id="designation" type="text" class="form-control" name="designation" value="{{ old('designation') }}"  >

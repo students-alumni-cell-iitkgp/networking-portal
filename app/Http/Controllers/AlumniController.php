@@ -32,14 +32,21 @@ class AlumniController extends Controller
       'dob' => 'required',
       'company' => 'required',
       'yog' => 'required',
-      'dept' => 'required'
+      'dept' => 'required',
+      'address' => 'required',
+      'city' => 'required',
+      'country' => 'required',
+      'designation' => 'required',
+      'hall' => 'required',
+
+
     ]);
     Alumni::create([
       'name' => request('name'),
       'email' => request('email'),
       'address' => request('address'),
-      'city' => request('city'),
-      'country' => request('country'),
+      'city' => request('city') || ' ',
+      'country' => request('country') || ' ',
       'mobile' => request('mobile'),
       'dob' => request('dob'),
       'company' => request('company'),
